@@ -1,0 +1,8 @@
+//START WITH GRUNT
+https://www.dyclassroom.com/grunt/grunt-getting-started
+
+//CONCATENATE FILES
+https://www.dyclassroom.com/grunt/grunt-using-grunt-plugin-to-concatenate-files
+
+//FILE ORDER
+https://stackoverflow.com/questions/20291986/how-to-specify-file-order-with-grunt

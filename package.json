@@ -1,0 +1,25 @@
+{
+  "name": "space_invaders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "grunt-contrib-concat": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DRossyCPNV/Space_Invaders.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DRossyCPNV/Space_Invaders/issues"
+  },
+  "homepage": "https://github.com/DRossyCPNV/Space_Invaders#readme"
+}
