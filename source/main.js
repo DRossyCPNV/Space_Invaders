@@ -1,4 +1,4 @@
-//Create Context
+//Create context
 var canvas = document.getElementById('myCanvas');
 
 if(canvas.getContext){
@@ -8,34 +8,49 @@ else {
     document.getElementById('noCanvas').innerHTML = 'Canvas not supported on your browser';
 }
 
-//Add Event Listener
-window.addEventListener('keydown', StartMovement, true);
-window.addEventListener('keyup', StopMovement, true);
+//Add event listeners for vessel movements
+window.addEventListener('keydown', vesselStartMovement, true);
+window.addEventListener('keyup', vesselStopMovement, true);
 
-//Create Vessel
-var vessel = new Vessels(10,10,10,10,);
+//Create vessel
+var vessel;
 
-function StartMovement(event) {
-    var speed = 0;
-    if (event.keyCode === 68){
-        speed = 5;
+//Create projectiles list
+var countProjectiles = 0;
+var projectiles = new Array();
+
+//Check if the vessel starts moving
+function vesselStartMovement(event) {
+    let speed = 0;
+    //Go right when hit D key
+    if (event.keyCode === 68) {
+        speed = vesselSpeed;
     }
-    if (event.keyCode === 65){
-        speed = -5;
+    //Go left when hit A key
+    if (event.keyCode === 65) {
+        speed = -vesselSpeed;
+    }
+    //Fire projectile when hit Spacebar
+    if (event.keyCode === 13) {
+        countProjectiles += 1;
+        let projectile = new Projectiles(countProjectiles);
+        projectiles.push(projectile);
     }
     vessel.speed = speed;
-    setInterval(function () {vessel.timeDelta += 1}, 1);
 }
 
-function StopMovement(event) {
-    var speed = 0;
+//Check if the vessel stops moving
+function vesselStopMovement(event) {
+    let speed = 0;
     vessel.speed = speed;
     vessel.timeDelta = 0;
 }
 
 function main() {
+    vessel = new Vessels(vesselInitialPos_X, vesselInitialPos_Y, vesselWidth, vesselHeight);
+
     setInterval(function () {
         draw();
         }
-    , 20);
+    , fps);
 }

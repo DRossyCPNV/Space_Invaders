@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 				separator: '',
 			},
 			dist: {
-				src: ['source/Vessels.js', 'source/main.js', 'source/display.js'],
+				src: ['source/constants.js', 'source/Projectiles.js', 'source/Vessels.js', 'source/main.js', 'source/display.js'],
 				dest: 'target/script.js',
 			},
 		},
