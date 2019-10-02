@@ -32,4 +32,31 @@ class Vessels {
             this.pos_x = checkPos_x;
         }
     }
+
+    checkMove() {
+        let vesselSpeed = vessel.speed;
+
+        if(keyMap[key_A] || keyMap[key_D]) {
+            if(keyMap[key_A]) {
+                vesselSpeed = -vesselInitialSpeed;
+            }
+            else {
+                vesselSpeed = vesselInitialSpeed;
+            }
+        }
+        else {
+            vesselSpeed = 0;
+        }
+
+        vessel.speed = vesselSpeed;
+    }
+
+    checkFire() {
+        //Vessel fires projectiles
+        if(keyMap[key_Enter]) {
+            countProjectiles += 1;
+            let projectile = new Projectiles(countProjectiles);
+            projectiles.push(projectile);
+        }
+    }
 }

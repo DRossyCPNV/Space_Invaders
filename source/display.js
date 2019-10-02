@@ -21,6 +21,7 @@ function drawVessel() {
 function drawProjectiles() {
     ctx.fillStyle = '#ff9c00';
     projectiles.forEach(function (projectile) {
+        projectile.setPosition();
         ctx.fillRect(projectile.pos_x, projectile.pos_y, projectile.width, projectile.height);
     });
 }

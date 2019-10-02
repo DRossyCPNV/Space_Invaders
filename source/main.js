@@ -9,8 +9,11 @@ else {
 }
 
 //Add event listeners for vessel movements
-window.addEventListener('keydown', vesselStartMovement, true);
-window.addEventListener('keyup', vesselStopMovement, true);
+window.addEventListener('keydown', keyDown, true);
+window.addEventListener('keyup', keyUp, true);
+
+//Create key_map
+var keyMap = {65: false, 68: false, 13: false};
 
 //Create vessel
 var vessel;
@@ -19,37 +22,24 @@ var vessel;
 var countProjectiles = 0;
 var projectiles = new Array();
 
-//Check if the vessel starts moving
-function vesselStartMovement(event) {
-    let speed = 0;
-    //Go right when hit D key
-    if (event.keyCode === 68) {
-        speed = vesselSpeed;
+function keyDown(event) {
+    if(event.keyCode in keyMap) {
+        keyMap[event.keyCode] = true;
     }
-    //Go left when hit A key
-    if (event.keyCode === 65) {
-        speed = -vesselSpeed;
-    }
-    //Fire projectile when hit Spacebar
-    if (event.keyCode === 13) {
-        countProjectiles += 1;
-        let projectile = new Projectiles(countProjectiles);
-        projectiles.push(projectile);
-    }
-    vessel.speed = speed;
 }
 
-//Check if the vessel stops moving
-function vesselStopMovement(event) {
-    let speed = 0;
-    vessel.speed = speed;
-    vessel.timeDelta = 0;
+function keyUp(event) {
+    if(event.keyCode in keyMap) {
+        keyMap[event.keyCode] = false;
+    }
 }
 
 function main() {
-    vessel = new Vessels(vesselInitialPos_X, vesselInitialPos_Y, vesselWidth, vesselHeight);
+    vessel = new Vessels(vesselInitialPos_X, vesselInitialPos_Y, vesselInitialWidth, vesselInitialHeight);
 
     setInterval(function () {
+        vessel.checkMove();
+        vessel.checkFire();
         draw();
         }
     , fps);
