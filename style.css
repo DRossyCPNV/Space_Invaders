@@ -1,0 +1,11 @@
+* {
+    margin: auto;
+    margin-top: 10px;
+    background-color: black;
+}
+
+#myCanvas {
+    display: flex;
+    border: 1px solid white;
+    background-color: black;
+}

@@ -8,17 +8,19 @@ else {
     document.getElementById('noCanvas').innerHTML = 'Canvas not supported on your browser';
 }
 
-//Add event listeners for vessel movements
+//Add event listeners for invader movements
 window.addEventListener('keydown', keyDown, true);
 window.addEventListener('keyup', keyUp, true);
 
 //Create key_map
 var keyMap = {65: false, 68: false, 13: false};
 
-//Create vessel
-var vessel;
+//Create invader
+var invader;
+var countDefenders = 0;
+var defenders = new Array();
 
-//Create projectiles list
+//Create invader projectiles list
 var countProjectiles = 0;
 var projectiles = new Array();
 
@@ -35,14 +37,16 @@ function keyUp(event) {
 }
 
 function main() {
-    vessel = new Vessels(vesselInitialPos_X, vesselInitialPos_Y, vesselInitialWidth, vesselInitialHeight);
+    invader = new Invaders(invaderInitialPos_X, invaderInitialPos_Y, invaderInitialWidth, invaderInitialHeight);
+    countDefenders += 1;
+    defenders.push(new Defenders(countDefenders, defenderInitialPos_X, defenderInitialPos_Y, defenderInitialWidth, defenderInitialHeight));
 
     requestAnimationFrame(animation);
 
     /*
     setInterval(function () {
-        vessel.checkMove();
-        vessel.checkFire();
+        invader.checkMove();
+        invader.checkFire();
         draw();
         }
     , fps);
@@ -50,8 +54,11 @@ function main() {
 }
 
 function animation() {
-    vessel.checkMove();
-    vessel.checkFire();
+    invader.checkMove();
+    invader.checkFire();
+    projectiles.forEach(function (projectile) {
+        projectile.detectCollision();
+    });
     draw();
     requestAnimationFrame(animation);
 }

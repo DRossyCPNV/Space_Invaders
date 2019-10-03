@@ -10,11 +10,17 @@ function erase() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-//Draw vessel
+//Draw invader
 function drawVessel() {
-    vessel.setPosition();
+    invader.setPosition();
     ctx.fillStyle = '#00f8ff';
-    ctx.fillRect(vessel.pos_x, vessel.pos_y, vessel.width, vessel.height);
+    ctx.fillRect(invader.pos_x, invader.pos_y, invader.width, invader.height);
+
+    ctx.fillStyle = '#c4ff00';
+    defenders.forEach(function (defender) {
+        defender.setPosition();
+        ctx.fillRect(defender.pos_x, defender.pos_y, defender.width, defender.height);
+    });
 }
 
 //Draw projectile

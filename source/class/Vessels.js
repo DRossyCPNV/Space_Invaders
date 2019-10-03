@@ -4,8 +4,7 @@ class Vessels {
     width;
     height;
     speed;
-    healthPoints;
-    //timeDelta;
+    health;
 
     constructor(pos_x, pos_y, width, height) {
         this.pos_x = pos_x;
@@ -13,8 +12,7 @@ class Vessels {
         this.width = width;
         this.height = height;
         this.speed = 0;
-        this.healthPoints = 100;
-        //this.timeDelta = 0;
+        this.health = 100;
     }
 
     //Compute the position with linear motion
@@ -22,33 +20,15 @@ class Vessels {
         let checkPos_x = this.pos_x + (this.speed /* *(this.timeDelta / 1000)*/);
 
         //Check that the computed position in within the canvas' boundaries
-        if(checkPos_x < 0) {
-            this.pos_x = 0;
+        if(checkPos_x < stopper) {
+            this.pos_x = stopper;
         }
-        else if(checkPos_x > canvas.width - vessel.width) {
-            this.pos_x = canvas.width - vessel.width;
+        else if(checkPos_x > canvas.width - stopper - invader.width) {
+            this.pos_x = canvas.width - stopper - invader.width;
         }
         else {
             this.pos_x = checkPos_x;
         }
-    }
-
-    checkMove() {
-        let vesselSpeed = vessel.speed;
-
-        if(keyMap[key_A] || keyMap[key_D]) {
-            if(keyMap[key_A]) {
-                vesselSpeed = -vesselInitialSpeed;
-            }
-            else {
-                vesselSpeed = vesselInitialSpeed;
-            }
-        }
-        else {
-            vesselSpeed = 0;
-        }
-
-        vessel.speed = vesselSpeed;
     }
 
     checkFire() {
@@ -58,5 +38,35 @@ class Vessels {
             let projectile = new Projectiles(countProjectiles);
             projectiles.push(projectile);
         }
+    }
+}
+
+class Invaders extends Vessels {
+
+    checkMove() {
+        let invaderSpeed = invader.speed;
+
+        if(keyMap[key_A] || keyMap[key_D]) {
+            if(keyMap[key_A]) {
+                invaderSpeed = -invaderInitialSpeed;
+            }
+            else {
+                invaderSpeed = invaderInitialSpeed;
+            }
+        }
+        else {
+            invaderSpeed = 0;
+        }
+
+        invader.speed = invaderSpeed;
+    }
+}
+
+class Defenders extends Vessels {
+    id;
+
+    constructor(id, pos_x, pos_y, width, height) {
+        super(pos_x, pos_y, width, height);
+        this.id = id;
     }
 }
