@@ -6,7 +6,7 @@ var vesselInitialWidth = 50;
 var vesselInitialHeight = 50;
 var vesselInitialPos_X = Math.ceil(document.getElementById('myCanvas').width / 2) - Math.ceil(vesselInitialWidth / 2);
 var vesselInitialPos_Y = 400; //Take vessel height into consideration
-var vesselInitialSpeed = 5;
+var vesselInitialSpeed = 10;
 
 //Projectiles constants
 var projectileInitialWidth = 5;

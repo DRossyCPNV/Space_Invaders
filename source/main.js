@@ -37,10 +37,21 @@ function keyUp(event) {
 function main() {
     vessel = new Vessels(vesselInitialPos_X, vesselInitialPos_Y, vesselInitialWidth, vesselInitialHeight);
 
+    requestAnimationFrame(animation);
+
+    /*
     setInterval(function () {
         vessel.checkMove();
         vessel.checkFire();
         draw();
         }
     , fps);
+     */
+}
+
+function animation() {
+    vessel.checkMove();
+    vessel.checkFire();
+    draw();
+    requestAnimationFrame(animation);
 }
